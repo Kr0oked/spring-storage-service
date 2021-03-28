@@ -1,0 +1,6 @@
+spring:
+  jpa:
+    open-in-view: false
+
+storage:
+  path: /tmp/spring-storage-service/

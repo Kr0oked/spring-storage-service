@@ -1,0 +1,10 @@
+spring:
+  http:
+    multipart:
+      max-file-size: 256MB
+      max-request-size: 512MB
+  jpa:
+    open-in-view: false
+
+storage:
+  location: /tmp/spring-storage-service/
