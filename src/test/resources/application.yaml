@@ -3,4 +3,5 @@ spring:
     open-in-view: false
 
 storage:
-  path: /tmp/spring-storage-service/
+  file-system:
+    path: /tmp/spring-storage-service/
