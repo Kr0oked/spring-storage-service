@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+  <link crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        rel="stylesheet">
+
+  <title>Storage Service</title>
+</head>
+<body>
+
+<div id="app">
+
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand">Spring Storage Service</a>
+    <button class="btn btn-primary" data-target="#uploadModal" data-toggle="modal" type="button">
+      Upload
+    </button>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th style="cursor:pointer" v-on:click="sortBy('filename')">Filename</th>
+            <th style="cursor:pointer" v-on:click="sortBy('contentType')">Content Type</th>
+            <th style="cursor:pointer" v-on:click="sortBy('size')">Size</th>
+            <th style="cursor:pointer" v-on:click="sortBy('creationDate')">Creation Date</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-show="page.numberOfElements === 0">
+            <td>No items found</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr :key="item.id" v-for="item in page.content">
+            <td>{{ item.filename }}</td>
+            <td>{{ item.contentType }}</td>
+            <td>{{ formatBytes(item.size) }}</td>
+            <td>{{ formatDateString(item.creationDate) }}</td>
+            <td>
+              <a class="btn btn-primary btn-sm"
+                 download="Download"
+                 target="_blank"
+                 title="Download"
+                 v-bind:href="'/storage/' + item.id">
+                Download
+              </a>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm" v-on:click="deleteItem(item.id)">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item" v-bind:class="{ disabled: page.number <= 0 }">
+              <a class="page-link" href="#" v-on:click="getPreviousPage()">Previous</a>
+            </li>
+            <li class="page-item disabled">
+              <a class="page-link" href="#">{{ page.number + 1 }}</a>
+            </li>
+            <li class="page-item" v-bind:class="{ disabled: page.number + 1 >= page.totalPages }">
+              <a class="page-link" href="#" v-on:click="getNextPage()">Next</a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+
+  <div aria-hidden="true" aria-labelledby="uploadModalLabel" class="modal fade" id="uploadModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadModalLabel">Upload</h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form v-on:submit.prevent="upload">
+            <div class="form-group">
+              <label for="inputFile">File</label>
+              <input class="form-control-file" id="inputFile" name="file" required type="file">
+            </div>
+            <button class="btn btn-primary" type="submit">Upload</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script crossorigin="anonymous"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script crossorigin="anonymous"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script crossorigin="anonymous"
+        integrity="sha256-KSlsysqp7TXtFo/FHjb1T9b425x3hrvzjMWaJyKbpcI="
+        src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+</html>

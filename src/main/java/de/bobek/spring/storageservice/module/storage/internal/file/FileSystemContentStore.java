@@ -43,7 +43,8 @@ public class FileSystemContentStore implements ContentStore {
         var deleted = Files.deleteIfExists(path);
         if (deleted) {
             log.debug("Deleted content at {}", path);
-        }else {
+        }
+        else {
             log.warn("Content at {} did not exist", path);
         }
     }

@@ -8,4 +8,4 @@ spring:
 
 storage:
   file-system:
-    location: /tmp/spring-storage-service/
+    location: /tmp

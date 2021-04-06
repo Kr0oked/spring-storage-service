@@ -4,4 +4,4 @@ spring:
 
 storage:
   file-system:
-    path: /tmp/spring-storage-service/
+    path: /tmp
