@@ -1,6 +1,5 @@
 package de.bobek.spring.storageservice.module.storage.web;
 
-
 import de.bobek.spring.storageservice.module.storage.api.StorageItem;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
