@@ -1,6 +1,6 @@
 package de.bobek.spring.storageservice.module.storage.web;
 
-import de.bobek.spring.storageservice.module.storage.api.Metadata;
+import de.bobek.spring.storageservice.module.metadata.api.Metadata;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

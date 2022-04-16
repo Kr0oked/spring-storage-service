@@ -1,4 +1,4 @@
-package de.bobek.spring.storageservice.module.storage.internal.db;
+package de.bobek.spring.storageservice.module.metadata.internal;
 
 import java.time.Instant;
 import java.util.UUID;

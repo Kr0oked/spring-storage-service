@@ -6,6 +6,5 @@ spring:
   jpa:
     open-in-view: false
 
-storage:
-  file-system:
-    location: /tmp
+file-system:
+  location: /tmp

@@ -1,4 +1,4 @@
-package de.bobek.spring.storageservice.module.storage.internal.db;
+package de.bobek.spring.storageservice.module.metadata.internal;
 
 import java.time.Instant;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import de.bobek.spring.storageservice.common.TimeProvider;
-import de.bobek.spring.storageservice.module.storage.StorageTestUtils;
+import de.bobek.spring.storageservice.module.metadata.api.MetadataTestUtils;
 import de.bobek.spring.storageservice.module.storage.api.AddStorageItemData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 
 import static de.bobek.spring.storageservice.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
@@ -48,7 +47,7 @@ class DatabaseMetadataStoreTest {
     @Test
     void list() {
         var item = getItem();
-        var metadata = StorageTestUtils.getMetadata();
+        var metadata = MetadataTestUtils.getMetadata();
         var pageRequest = PageRequest.of(0, 1);
         var itemPage = new PageImpl<>(List.of(item), pageRequest, 123L);
 
@@ -65,7 +64,7 @@ class DatabaseMetadataStoreTest {
     @Test
     void findReturnsMetadata() {
         var item = getItem();
-        var metadata = StorageTestUtils.getMetadata();
+        var metadata = MetadataTestUtils.getMetadata();
         var uuid = getUUID();
 
         when(itemRepository.findByIdAndUsername(uuid, "johnDoe")).thenReturn(Optional.of(item));
@@ -97,7 +96,7 @@ class DatabaseMetadataStoreTest {
     @Test
     void storeFull() {
         var item = getItem();
-        var metadata = StorageTestUtils.getMetadata();
+        var metadata = MetadataTestUtils.getMetadata();
 
         when(timeProvider.now()).thenReturn(Instant.parse("2007-12-03T10:15:30.00Z"));
         when(itemRepository.save(any(Item.class))).thenReturn(item);
@@ -127,7 +126,7 @@ class DatabaseMetadataStoreTest {
     @Test
     void storeMinimal() {
         var item = getItem();
-        var metadata = StorageTestUtils.getMetadata();
+        var metadata = MetadataTestUtils.getMetadata();
 
         when(timeProvider.now()).thenReturn(Instant.parse("2007-12-03T10:15:30.00Z"));
         when(itemRepository.save(any(Item.class))).thenReturn(item);
@@ -151,7 +150,7 @@ class DatabaseMetadataStoreTest {
     @Test
     void deleteReturnsMetadata() {
         var item = getItem();
-        var metadata = StorageTestUtils.getMetadata();
+        var metadata = MetadataTestUtils.getMetadata();
         var uuid = getUUID();
 
         when(itemRepository.findByIdAndUsername(uuid, "johnDoe")).thenReturn(Optional.of(item));

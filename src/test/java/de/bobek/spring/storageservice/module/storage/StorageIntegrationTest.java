@@ -5,8 +5,8 @@ import java.time.Instant;
 import java.util.Optional;
 
 import de.bobek.spring.storageservice.common.TimeProvider;
-import de.bobek.spring.storageservice.module.storage.internal.db.ItemRepository;
-import de.bobek.spring.storageservice.module.storage.internal.file.StorageLocationProvider;
+import de.bobek.spring.storageservice.module.content.internal.FileSystemProperties;
+import de.bobek.spring.storageservice.module.metadata.internal.ItemRepository;
 import de.bobek.spring.storageservice.module.storage.web.FileInfo;
 import de.bobek.spring.storageservice.module.storage.web.FileInfoPage;
 import io.restassured.RestAssured;
@@ -23,7 +23,6 @@ import org.springframework.lang.Nullable;
 import static de.bobek.spring.storageservice.Assertions.assertThat;
 import static io.restassured.http.ContentType.JSON;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpHeaders.CONTENT_DISPOSITION;
@@ -39,7 +38,7 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 public class StorageIntegrationTest {
 
     @TempDir
-    Path tempDir;
+    private Path tempDir;
 
     @LocalServerPort
     private Integer port;
@@ -48,7 +47,7 @@ public class StorageIntegrationTest {
     private TimeProvider timeProvider;
 
     @MockBean
-    private StorageLocationProvider storageLocationProvider;
+    private FileSystemProperties fileSystemProperties;
 
     @Autowired
     private ItemRepository itemRepository;
@@ -59,7 +58,7 @@ public class StorageIntegrationTest {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 
         when(timeProvider.now()).thenReturn(Instant.parse("2007-12-03T10:15:30.00Z"));
-        when(storageLocationProvider.getLocation()).thenReturn(tempDir);
+        when(fileSystemProperties.getLocation()).thenReturn(tempDir);
 
         itemRepository.deleteAll();
     }

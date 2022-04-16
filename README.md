@@ -22,6 +22,6 @@ The Demo Frontend can be accessed at http://localhost:8080.
 ## Users
 
 | Username | Password |
-| ---      | ---      |
+|----------|----------|
 | alice    | secret   |
 | bob      | secret   |

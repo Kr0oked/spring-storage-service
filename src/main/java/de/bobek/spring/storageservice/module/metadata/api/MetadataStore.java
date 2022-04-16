@@ -1,9 +1,8 @@
-package de.bobek.spring.storageservice.module.storage.internal;
+package de.bobek.spring.storageservice.module.metadata.api;
 
 import java.util.Optional;
 
 import de.bobek.spring.storageservice.module.storage.api.AddStorageItemData;
-import de.bobek.spring.storageservice.module.storage.api.Metadata;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

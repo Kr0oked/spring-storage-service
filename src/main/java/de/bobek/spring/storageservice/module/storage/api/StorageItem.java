@@ -3,6 +3,7 @@ package de.bobek.spring.storageservice.module.storage.api;
 import java.io.InputStream;
 import java.util.function.Supplier;
 
+import de.bobek.spring.storageservice.module.metadata.api.Metadata;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

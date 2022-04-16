@@ -6,9 +6,9 @@ import java.io.InputStream;
 import java.time.Instant;
 import java.util.Optional;
 
-import de.bobek.spring.storageservice.module.storage.StorageTestUtils;
+import de.bobek.spring.storageservice.module.metadata.api.Metadata;
+import de.bobek.spring.storageservice.module.storage.StorageItemTestUtils;
 import de.bobek.spring.storageservice.module.storage.api.AddStorageItemData;
-import de.bobek.spring.storageservice.module.storage.api.Metadata;
 import de.bobek.spring.storageservice.module.storage.api.StorageItem;
 import de.bobek.spring.storageservice.module.storage.api.StorageItemNotFoundException;
 import de.bobek.spring.storageservice.module.storage.api.StorageService;
@@ -31,7 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import static de.bobek.spring.storageservice.Assertions.assertThat;
 import static java.util.Collections.emptyList;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
@@ -199,8 +198,8 @@ class StorageControllerTest {
         when(file.getInputStream()).thenReturn(new ByteArrayInputStream(new byte[] { 'a', 'b', 'c' }));
 
         var userDetails = getUserDetails("johnDoe");
-        var storageItem = StorageTestUtils.getStorageItem();
-        var fileInfo = StorageTestUtils.getFileInfo();
+        var storageItem = StorageItemTestUtils.getStorageItem();
+        var fileInfo = FileInfoTestUtils.getFileInfo();
 
         when(storageService.add(any(AddStorageItemData.class), any(InputStream.class))).thenReturn(storageItem);
         when(fileInfoAdapter.adapt(storageItem.getMetadata())).thenReturn(fileInfo);
@@ -227,8 +226,8 @@ class StorageControllerTest {
         when(file.getInputStream()).thenReturn(new ByteArrayInputStream(new byte[] { 'a', 'b', 'c' }));
 
         var userDetails = getUserDetails("johnDoe");
-        var storageItem = StorageTestUtils.getStorageItem();
-        var fileInfo = StorageTestUtils.getFileInfo();
+        var storageItem = StorageItemTestUtils.getStorageItem();
+        var fileInfo = FileInfoTestUtils.getFileInfo();
 
         when(storageService.add(any(AddStorageItemData.class), any(InputStream.class))).thenReturn(storageItem);
         when(fileInfoAdapter.adapt(storageItem.getMetadata())).thenReturn(fileInfo);

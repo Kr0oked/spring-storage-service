@@ -1,8 +1,8 @@
-package de.bobek.spring.storageservice.module.storage.internal.db;
+package de.bobek.spring.storageservice.module.metadata.internal;
 
 import java.util.Optional;
 
-import de.bobek.spring.storageservice.module.storage.api.Metadata;
+import de.bobek.spring.storageservice.module.metadata.api.Metadata;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

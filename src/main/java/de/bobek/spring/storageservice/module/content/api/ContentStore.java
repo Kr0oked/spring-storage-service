@@ -1,4 +1,4 @@
-package de.bobek.spring.storageservice.module.storage.internal;
+package de.bobek.spring.storageservice.module.content.api;
 
 import java.io.IOException;
 import java.io.InputStream;

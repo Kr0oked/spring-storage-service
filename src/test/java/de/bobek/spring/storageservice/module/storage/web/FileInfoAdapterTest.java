@@ -2,7 +2,7 @@ package de.bobek.spring.storageservice.module.storage.web;
 
 import java.time.Instant;
 
-import de.bobek.spring.storageservice.module.storage.api.Metadata;
+import de.bobek.spring.storageservice.module.metadata.api.Metadata;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

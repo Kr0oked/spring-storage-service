@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.function.Supplier;
 
-import de.bobek.spring.storageservice.module.storage.api.Metadata;
+import de.bobek.spring.storageservice.module.content.api.ContentStore;
+import de.bobek.spring.storageservice.module.metadata.api.Metadata;
 import de.bobek.spring.storageservice.module.storage.api.StorageItem;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

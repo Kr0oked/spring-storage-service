@@ -1,4 +1,4 @@
-package de.bobek.spring.storageservice.module.storage.internal.db;
+package de.bobek.spring.storageservice.module.metadata.internal;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package de.bobek.spring.storageservice.module.storage.internal.file;
+package de.bobek.spring.storageservice.module.content.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
-import de.bobek.spring.storageservice.module.storage.internal.ContentStore;
+import de.bobek.spring.storageservice.module.content.api.ContentStore;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class FileSystemContentStore implements ContentStore {
 
     @NonNull
-    private final StorageLocationProvider storageLocationProvider;
+    private final FileSystemProperties fileSystemProperties;
 
     @Override
     public InputStream get(String id) throws IOException {
@@ -50,6 +50,6 @@ public class FileSystemContentStore implements ContentStore {
     }
 
     private Path buildPath(String id) {
-        return storageLocationProvider.getLocation().resolve(id);
+        return fileSystemProperties.getLocation().resolve(id);
     }
 }

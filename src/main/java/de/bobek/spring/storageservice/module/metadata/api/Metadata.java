@@ -1,4 +1,4 @@
-package de.bobek.spring.storageservice.module.storage.api;
+package de.bobek.spring.storageservice.module.metadata.api;
 
 import java.time.Instant;
 import java.util.Optional;

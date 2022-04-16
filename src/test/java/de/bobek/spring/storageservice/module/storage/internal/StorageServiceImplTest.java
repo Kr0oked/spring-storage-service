@@ -6,9 +6,12 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
-import de.bobek.spring.storageservice.module.storage.StorageTestUtils;
+import de.bobek.spring.storageservice.module.content.api.ContentStore;
+import de.bobek.spring.storageservice.module.metadata.api.Metadata;
+import de.bobek.spring.storageservice.module.metadata.api.MetadataStore;
+import de.bobek.spring.storageservice.module.metadata.api.MetadataTestUtils;
+import de.bobek.spring.storageservice.module.storage.StorageItemTestUtils;
 import de.bobek.spring.storageservice.module.storage.api.AddStorageItemData;
-import de.bobek.spring.storageservice.module.storage.api.Metadata;
 import de.bobek.spring.storageservice.module.storage.api.StorageItemNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +23,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import static de.bobek.spring.storageservice.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.inOrder;
@@ -44,8 +46,8 @@ class StorageServiceImplTest {
 
     @Test
     void list() {
-        var metadata = StorageTestUtils.getMetadata();
-        var storageItem = StorageTestUtils.getStorageItem();
+        var metadata = MetadataTestUtils.getMetadata();
+        var storageItem = StorageItemTestUtils.getStorageItem();
         var pageRequest = PageRequest.of(0, 1);
         var metadataPage = new PageImpl<>(List.of(metadata), pageRequest, 123L);
 
@@ -61,8 +63,8 @@ class StorageServiceImplTest {
 
     @Test
     void get() throws Exception {
-        var metadata = StorageTestUtils.getMetadata();
-        var storageItem = StorageTestUtils.getStorageItem();
+        var metadata = MetadataTestUtils.getMetadata();
+        var storageItem = StorageItemTestUtils.getStorageItem();
 
         when(metadataStore.find("johnDoe", "123")).thenReturn(Optional.of(metadata));
         when(storageItemAdapter.adapt(metadata)).thenReturn(storageItem);
@@ -89,7 +91,7 @@ class StorageServiceImplTest {
                 .size(256L)
                 .creationDate(Instant.parse("2007-12-03T10:15:30.00Z"))
                 .build();
-        var storageItem = StorageTestUtils.getStorageItem();
+        var storageItem = StorageItemTestUtils.getStorageItem();
         var data = getAddStorageItemData();
         var content = new ByteArrayInputStream(new byte[] { 'a', 'b', 'c' });
 

@@ -3,6 +3,8 @@ package de.bobek.spring.storageservice.module.storage.internal;
 import java.io.IOException;
 import java.io.InputStream;
 
+import de.bobek.spring.storageservice.module.content.api.ContentStore;
+import de.bobek.spring.storageservice.module.metadata.api.MetadataStore;
 import de.bobek.spring.storageservice.module.storage.api.AddStorageItemData;
 import de.bobek.spring.storageservice.module.storage.api.StorageItem;
 import de.bobek.spring.storageservice.module.storage.api.StorageItemNotFoundException;

@@ -1,12 +1,12 @@
-package de.bobek.spring.storageservice.module.storage.internal.db;
+package de.bobek.spring.storageservice.module.metadata.internal;
 
 import java.util.Optional;
 import java.util.UUID;
 
 import de.bobek.spring.storageservice.common.TimeProvider;
+import de.bobek.spring.storageservice.module.metadata.api.Metadata;
+import de.bobek.spring.storageservice.module.metadata.api.MetadataStore;
 import de.bobek.spring.storageservice.module.storage.api.AddStorageItemData;
-import de.bobek.spring.storageservice.module.storage.api.Metadata;
-import de.bobek.spring.storageservice.module.storage.internal.MetadataStore;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

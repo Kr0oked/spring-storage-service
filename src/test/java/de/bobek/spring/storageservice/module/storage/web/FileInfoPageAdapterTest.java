@@ -2,7 +2,7 @@ package de.bobek.spring.storageservice.module.storage.web;
 
 import java.util.List;
 
-import de.bobek.spring.storageservice.module.storage.StorageTestUtils;
+import de.bobek.spring.storageservice.module.storage.StorageItemTestUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,9 +26,9 @@ class FileInfoPageAdapterTest {
 
     @Test
     void adapt() {
-        var storageItem = StorageTestUtils.getStorageItem();
+        var storageItem = StorageItemTestUtils.getStorageItem();
         var storageItemPage = new PageImpl<>(List.of(storageItem), PageRequest.of(1, 2), 4L);
-        var fileInfo = StorageTestUtils.getFileInfo();
+        var fileInfo = FileInfoTestUtils.getFileInfo();
 
         when(fileInfoAdapter.adapt(storageItem.getMetadata())).thenReturn(fileInfo);
 
